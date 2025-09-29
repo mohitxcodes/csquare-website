@@ -95,14 +95,14 @@ export default function Events() {
         const relativeIndex = (eventIndex - currentIndex + events.length) % events.length;
 
         if (relativeIndex === 0) {
-            // Center card - full opacity, normal size
+            // Center card - full opacity, normal size, center position
             return { x: 0, y: 0, scale: 1, zIndex: 3, opacity: 1 };
         } else if (relativeIndex === 1) {
-            // Right card - reduced opacity, slightly smaller
-            return { x: 300, y: 20, scale: 0.85, zIndex: 2, opacity: 0.6 };
+            // Right card - reduced opacity, same size, right position with gap
+            return { x: 350, y: 30, scale: 1, zIndex: 2, opacity: 0.6 };
         } else if (relativeIndex === events.length - 1) {
-            // Left card - reduced opacity, slightly smaller
-            return { x: -300, y: 20, scale: 0.85, zIndex: 1, opacity: 0.6 };
+            // Left card - reduced opacity, same size, left position with gap
+            return { x: -350, y: 30, scale: 1, zIndex: 1, opacity: 0.6 };
         } else {
             // Hidden cards - zero opacity, zero size
             return { x: 0, y: 0, scale: 0, zIndex: 0, opacity: 0 };
@@ -111,7 +111,7 @@ export default function Events() {
 
     return (
         <motion.div
-            className="relative min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800 py-20 overflow-hidden"
+            className="relative min-h-screen py-20 overflow-hidden"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -151,14 +151,8 @@ export default function Events() {
                     variants={itemVariants}
                     className="text-center mb-16"
                 >
-                    <motion.div
-                        className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-900/80 border border-sky-500/30 mb-8 backdrop-blur-xl shadow-2xl"
-                    >
-                        <Calendar className="w-5 h-5 text-sky-400" />
-                        <span className="text-sky-300 text-sm font-medium tracking-wide">Upcoming Events</span>
-                    </motion.div>
 
-                    <h2 className="text-5xl md:text-6xl font-black mb-6">
+                    <h2 className="text-5xl flex items-center justify-center gap-2 md:text-6xl font-black mb-6">
                         <span className="bg-gradient-to-r from-white via-sky-200 to-cyan-200 bg-clip-text text-transparent">
                             Join Our
                         </span>
@@ -197,11 +191,11 @@ export default function Events() {
                                     }}
                                     transition={{
                                         type: "spring",
-                                        damping: 20,
-                                        stiffness: 100,
-                                        mass: 0.8
+                                        damping: 18,
+                                        stiffness: 150,
+                                        mass: 0.6
                                     }}
-                                    className="group absolute w-80 p-8 rounded-2xl bg-gradient-to-br from-slate-800/30 to-slate-900/30 border border-sky-500/10 backdrop-blur-sm hover:border-sky-400/30 transition-all duration-300"
+                                    className="group absolute w-80 px-4 py-6 rounded-2xl bg-gradient-to-br from-slate-800/30 to-slate-900/30 border border-sky-500/10 backdrop-blur-sm hover:border-sky-400/30 transition-all duration-300"
                                 >
                                     {/* Event Image */}
                                     <div className="relative h-48 mb-6 overflow-hidden rounded-xl">
@@ -215,8 +209,8 @@ export default function Events() {
                                         {/* Event Type Badge */}
                                         <div className="absolute top-4 right-4">
                                             <span className={`px-3 py-1 rounded-full text-xs font-semibold ${event.type === 'Workshop'
-                                                    ? 'bg-gradient-to-r from-sky-500 to-cyan-500 text-white'
-                                                    : 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
+                                                ? 'bg-gradient-to-r from-sky-500 to-cyan-500 text-white'
+                                                : 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
                                                 }`}>
                                                 {event.type}
                                             </span>
@@ -287,7 +281,7 @@ export default function Events() {
                         whileHover={{ scale: 1.1, backgroundColor: "rgba(56, 189, 248, 0.2)" }}
                         whileTap={{ scale: 0.9 }}
                         onClick={prevEvent}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-slate-800/50 border border-sky-500/30 backdrop-blur-sm text-sky-400 hover:text-sky-300 transition-all duration-300"
+                        className="absolute left-[-30px] top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-800/50 border border-sky-500/30 backdrop-blur-sm text-sky-400 hover:text-sky-300 transition-all duration-300 z-10 cursor-pointer"
                     >
                         <ChevronLeft className="w-6 h-6" />
                     </motion.button>
@@ -297,7 +291,7 @@ export default function Events() {
                         whileHover={{ scale: 1.1, backgroundColor: "rgba(56, 189, 248, 0.2)" }}
                         whileTap={{ scale: 0.9 }}
                         onClick={nextEvent}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-slate-800/50 border border-sky-500/30 backdrop-blur-sm text-sky-400 hover:text-sky-300 transition-all duration-300"
+                        className="absolute right-[-30px] top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-800/50 border border-sky-500/30 backdrop-blur-sm text-sky-400 hover:text-sky-300 transition-all duration-300 z-10 cursor-pointer"
                     >
                         <ChevronRight className="w-6 h-6" />
                     </motion.button>
