@@ -198,7 +198,7 @@ export default function HeroSection() {
             <motion.div variants={itemVariants} className="mb-6">
                 <div className="relative">
                     <motion.h1
-                        className="flex gap-4 items-center justify-center text-6xl md:text-6xl lg:text-8xl font-black leading-none"
+                        className="cursor-pointer flex gap-4 items-center justify-center text-6xl md:text-6xl lg:text-8xl font-black leading-none"
                         style={{
                             background: 'linear-gradient(135deg, #ffffff 0%, #e0f2fe 25%, #7dd3fc 50%, #0ea5e9 75%, #ffffff 100%)',
                             WebkitBackgroundClip: 'text',
